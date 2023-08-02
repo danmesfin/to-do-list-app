@@ -16,8 +16,8 @@ const Task: React.FC<TaskProps> = ({
   completed,
 }) => {
   return (
-    <div className="bg-white shadow rounded-lg p-4 mb-4">
-      <h3 className="text-lg font-bold mb-2">{title}</h3>
+    <div className="bg-white shadow rounded-lg p-4 mb-4 w-full md:w-72">
+      <h3 className="text-lg font-bold mb-2 text-black">{title}</h3>
       <p className="text-gray-600 text-sm mb-2">{description}</p>
       <p className="text-gray-600 text-sm mb-2">Due Date: {dueDate}</p>
       <p
