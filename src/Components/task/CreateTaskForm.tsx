@@ -1,26 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid"; // Import CheckIcon and XIcon from the Heroicons library
+import { useDispatch, useSelector } from "react-redux";
+import { addTask } from "../../Redux/task/taskSlice";
+import { CheckIcon, XCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 interface CreateTaskFormProps {
-  onAddTask: (task: TaskData) => void;
   onCloseModal: () => void;
 }
 
 interface TaskData {
   title: string;
+  id: number;
   description: string;
   dueDate: string;
   priority: string;
   completed: boolean;
 }
 
-const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
-  onAddTask,
-  onCloseModal,
-}) => {
+const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
   const initialFormData: TaskData = {
     title: "",
+    id: 0,
     description: "",
     dueDate: "",
     priority: "Medium",
@@ -28,6 +28,8 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
   };
 
   const [formData, setFormData] = useState<TaskData>(initialFormData);
+  const dispatch = useDispatch();
+  const nextId = useSelector((state) => state.tasks.nextId);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -41,8 +43,15 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAddTask(formData);
+    // Generate a new unique id for the task
+    const newId = nextId;
+    const newTask: TaskData = { ...formData, id: newId };
+    // Dispatch the addTask action to add the new task to the store
+    dispatch(addTask(newTask));
+    // Reset the form state
     setFormData(initialFormData);
+    // Close the modal
+    onCloseModal();
   };
 
   return (
@@ -133,7 +142,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
               onClick={onCloseModal}
               className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
             >
-              <XMarkIcon className="h-5 w-5" />
+              <XCircleIcon className="h-5 w-5" />
               <span>Cancel</span>
             </button>
           </div>

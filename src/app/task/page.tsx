@@ -1,37 +1,34 @@
 "use client";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Task from "../../Components/task/Task";
 import CreateTaskForm from "../../Components/task/CreateTaskForm";
-import { PlusIcon } from "@heroicons/react/24/solid"; // Import the PlusIcon from the Heroicons library
+import { PlusIcon } from "@heroicons/react/24/solid";
+import { RootState } from "../../Redux/store";
+import {
+  addTask,
+  deleteTask,
+  sortTasks,
+  TaskData,
+} from "../../Redux/task/taskSlice";
 
 const HomePage: React.FC = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
-
-  const [tasks, setTasks] = useState<TaskData[]>([
-    {
-      id: 1,
-      title: "Task 1",
-      description: "Description for Task 1",
-      dueDate: "2023-08-15",
-      priority: "High",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "Description for Task 2",
-      dueDate: "2023-08-20",
-      priority: "Medium",
-      completed: true,
-    },
-    // Add more tasks here
-  ]);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const dispatch = useDispatch();
 
   const handleAddTask = (newTask: TaskData) => {
-    // Generate a unique ID for the new task
-    const newTaskWithId = { ...newTask, id: tasks.length + 1 };
-    setTasks((prevTasks) => [...prevTasks, newTaskWithId]);
+    dispatch(addTask(newTask));
     setShowCreateForm(false);
+  };
+
+  const handleDeleteTask = (taskId: number) => {
+    dispatch(deleteTask(taskId));
+  };
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const sortBy = event.target.value;
+    dispatch(sortTasks(sortBy as "byDate" | "byPriority"));
   };
 
   const handleOpenModal = () => {
@@ -47,11 +44,15 @@ const HomePage: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Welcome to the To-Do List App</h1>
 
       <div className="flex mb-4 border border-b justify-between rounded p-2">
-        <div className="flex ">
+        <div className="flex">
           <label htmlFor="sort" className="mx-1 p-1">
             Sort
           </label>
-          <select name="sort" className="text-black rounded-md p-1 mx-1">
+          <select
+            name="sort"
+            className="text-black rounded-md p-1 mx-1"
+            onChange={handleSortChange}
+          >
             <option className="text-black" value="byDate">
               Date
             </option>
@@ -73,7 +74,7 @@ const HomePage: React.FC = () => {
       {/* Render the modal conditionally based on the showCreateForm state */}
       {showCreateForm && (
         <CreateTaskForm
-          onAddTask={handleAddTask}
+          onAddTask={() => handleAddTask}
           onCloseModal={handleCloseModal}
         />
       )}
@@ -83,11 +84,13 @@ const HomePage: React.FC = () => {
         {tasks.map((task) => (
           <Task
             key={task.id}
+            id={task.id}
             title={task.title}
             description={task.description}
             dueDate={task.dueDate}
             priority={task.priority}
             completed={task.completed}
+            onDelete={() => handleDeleteTask(task.id)} // Pass a callback to handle task deletion
           />
         ))}
       </div>
