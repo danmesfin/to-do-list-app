@@ -7,6 +7,7 @@ export interface TaskData {
   dueDate: string;
   priority: string;
   completed: boolean;
+  tags: Array<String>;
 }
 
 interface TasksState {
@@ -24,6 +25,7 @@ const initialState: TasksState = {
       dueDate: '2023-08-15',
       priority: 'High',
       completed: false,
+      tags: ['work', 'remote'],
     },
     {
       id: 2,
@@ -32,6 +34,7 @@ const initialState: TasksState = {
       dueDate: '2023-08-20',
       priority: 'Medium',
       completed: true,
+      tags: ['speed', 'remote'],
     },
     // Add more tasks here
  

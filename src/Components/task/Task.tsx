@@ -14,6 +14,7 @@ const Task: React.FC<TaskProps> = ({
   dueDate,
   priority,
   completed,
+  tags,
   onDelete,
 }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,15 @@ const Task: React.FC<TaskProps> = ({
 
   const handleMarkAsComplete = () => {
     dispatch(
-      updateTask({ id, title, description, dueDate, priority, completed: true })
+      updateTask({
+        id,
+        title,
+        description,
+        dueDate,
+        priority,
+        completed: true,
+        tags,
+      })
     );
   };
 
@@ -51,6 +60,20 @@ const Task: React.FC<TaskProps> = ({
       >
         Priority: {priority}
       </p>
+      {/* Display tags */}
+      {tags.length > 0 && (
+        <div className="mb-2">
+          Tags:{" "}
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="inline-block bg-gray-200 px-2 py-1 text-sm font-medium text-gray-800 rounded-full mr-1"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
       {completed ? (
         <p className="text-sm text-green-600 font-bold">Completed</p>
       ) : (

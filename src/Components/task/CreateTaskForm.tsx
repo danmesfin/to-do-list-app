@@ -1,20 +1,21 @@
-"use client";
+"use state";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../Redux/task/taskSlice";
-import { CheckIcon, XCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 interface CreateTaskFormProps {
   onCloseModal: () => void;
 }
 
 interface TaskData {
-  title: string;
   id: number;
+  title: string;
   description: string;
   dueDate: string;
   priority: string;
   completed: boolean;
+  tags: string[]; // Add tags field
 }
 
 const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
@@ -25,6 +26,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
     dueDate: "",
     priority: "Medium",
     completed: false,
+    tags: [],
   };
 
   const [formData, setFormData] = useState<TaskData>(initialFormData);
@@ -38,6 +40,14 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      tags: value.split(",").map((tag) => tag.trim()), // Convert comma-separated tags to an array
     }));
   };
 
@@ -128,6 +138,22 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="tags"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Tags (comma-separated)
+            </label>
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value={formData.tags.join(", ")} // Convert the tags array to comma-separated string
+              onChange={handleTagChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+            />
           </div>
           <div className="mb-4 flex justify-end">
             <button

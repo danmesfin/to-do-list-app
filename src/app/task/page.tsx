@@ -90,6 +90,7 @@ const HomePage: React.FC = () => {
             dueDate={task.dueDate}
             priority={task.priority}
             completed={task.completed}
+            tags={task.tags}
             onDelete={() => handleDeleteTask(task.id)} // Pass a callback to handle task deletion
           />
         ))}
