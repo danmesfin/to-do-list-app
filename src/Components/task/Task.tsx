@@ -1,7 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask, updateTask, TaskData } from "../../Redux/task/taskSlice";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"; // Import the TrashIcon
 
 interface TaskProps extends TaskData {
   onDelete: () => void;
@@ -45,7 +46,7 @@ const Task: React.FC<TaskProps> = ({
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-4 mb-4 w-full md:w-72">
+    <div className="bg-white shadow rounded-lg p-2 md:p-4 mb-4 w-full md:w-72">
       <h3 className="text-lg font-bold mb-2 text-black">
         {title}
         {" : "}
@@ -75,7 +76,15 @@ const Task: React.FC<TaskProps> = ({
         </div>
       )}
       {completed ? (
-        <p className="text-sm text-green-600 font-bold">Completed</p>
+        <div className="flex">
+          <p className="text-sm text-green-600 font-bold">Completed</p>
+          <button
+            onClick={() => setShowDeleteConfirmation(true)}
+            className="bg-red-500 text-white px-2 py-1 rounded-md ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
+          >
+            <TrashIcon className="h-5 w-5" /> {/* Use the TrashIcon */}
+          </button>
+        </div>
       ) : (
         <>
           <button
@@ -88,7 +97,7 @@ const Task: React.FC<TaskProps> = ({
             onClick={() => setShowDeleteConfirmation(true)}
             className="bg-red-500 text-white px-2 py-1 rounded-md ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
           >
-            Delete
+            <TrashIcon className="h-5 w-5" /> {/* Use the TrashIcon */}
           </button>
         </>
       )}

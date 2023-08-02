@@ -72,6 +72,16 @@ const tasksSlice = createSlice({
         state.tasks.sort((a, b) => a.priority.localeCompare(b.priority));
       }
     },
+    searchTasks: (state, action: PayloadAction<string>) => {
+      const searchTerm = action.payload.toLowerCase();
+      state.tasks.forEach(task => {
+        if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+          task.show = true;
+        } else {
+          task.show = false;
+        }
+      });
+    },
   },
 });
 

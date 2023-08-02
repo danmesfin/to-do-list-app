@@ -1,0 +1,17 @@
+/* HomePage.css */
+/* Responsive styles */
+@media (max-width: 767px) {
+  .container {
+    padding-top: 20px;
+  }
+
+  /* Add a class to hide the sidebar when collapsed */
+  .is-collapsed .w-1\/4 {
+    display: none;
+  }
+
+  /* Add a class to expand the content area when collapsed */
+  .is-collapsed .w-3\/4 {
+    width: 100%;
+  }
+}
