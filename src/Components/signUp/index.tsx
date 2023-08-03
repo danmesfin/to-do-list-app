@@ -59,7 +59,7 @@ const SignupForm: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
+      <h1 className="text-2xl font-bold mb-4 text-blue-500">Sign Up</h1>
       <form
         className="flex flex-col w-72 rounded p-4 items-center"
         onSubmit={handleSignup}
@@ -86,7 +86,7 @@ const SignupForm: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 item-center"
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
         >
           {isLoading ? <Loading /> : "Sign Up"}
         </button>

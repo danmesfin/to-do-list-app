@@ -34,8 +34,8 @@ const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-purple-500 to-blue-500">
       <div className="bg-white p-8 rounded-lg shadow-md max-w-sm w-full">
-        <h2 className="text-2xl font-semibold text-center mb-4 text-black">
-          Welcome to ToDo
+        <h2 className="text-2xl font-semibold text-center mb-4 text-gray-600">
+          Welcome to To~do
         </h2>
         <Login /> {/* Render the Login component */}
         {/* Sign in with Google button/icon */}
@@ -61,9 +61,9 @@ const LoginPage: React.FC = () => {
         </button>
         {/* Sign up option for users who have not registered */}
         <p className="text-center mt-4 text-sm  text-black">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <span
-            className="text-blue-500 cursor-pointer"
+            className="text-blue-500 cursor-pointer hover:underline"
             onClick={() => router.push("/signup")}
           >
             Sign Up

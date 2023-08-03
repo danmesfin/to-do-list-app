@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import SignupForm from "../../Components/signUp";
 
 const SignupPage: React.FC = () => {
@@ -9,8 +8,8 @@ const SignupPage: React.FC = () => {
      p-4 bg-gradient-to-br from-purple-500 to-blue-500"
     >
       <div className="bg-white p-8 rounded-lg shadow-md max-w-sm w-full items-center">
-        <h1 className="text-center text-2xl font-bold mb-4 text-black">
-          Welcome to ToDo
+        <h1 className="text-center text-2xl font-bold mb-4 text-gray-600">
+          Welcome to To~do
         </h1>
         <SignupForm />
         <p className="text-center mt-4 text-sm  text-black">

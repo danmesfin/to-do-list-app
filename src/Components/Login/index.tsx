@@ -4,13 +4,16 @@ import { setCurrentUser } from "../../Redux/user/userSlice";
 import { signInWithEmailAndPassword, Auth } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import { UserIcon, LockClosedIcon } from "@heroicons/react/24/solid"; // Import the required HeroIcons
+import Loading from "../Loading/Spinner";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleLogin = async (e: FormEvent) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -23,11 +26,12 @@ const Login: React.FC = () => {
     } catch (error: any) {
       console.error("Error logging in:", error.message);
     }
+    setIsLoading(false);
   };
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Log In</h1>
+      <h1 className="text-2xl font-bold mb-4 text-blue-500">Sign In</h1>
       <form
         className="flex flex-col w-72 rounded p-4 items-center"
         onSubmit={handleLogin}
@@ -56,7 +60,7 @@ const Login: React.FC = () => {
           type="submit"
           className="w-full bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
         >
-          Log In
+          {isLoading ? <Loading /> : "Sign In"}
         </button>
         <p className="mt-2 text-blue-500 hover:underline cursor-pointer">
           Forgot Password

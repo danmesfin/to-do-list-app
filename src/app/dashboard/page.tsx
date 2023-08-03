@@ -1,11 +1,11 @@
 // HomePage.tsx
 "use client";
-// HomePage.tsx
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "@/Components/Header";
 import Task from "../../Components/task/Task";
 import CreateTaskForm from "../../Components/task/CreateTaskForm";
-import { PlusIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { RootState } from "../../Redux/store";
 import {
   addTask,
@@ -74,7 +74,9 @@ const HomePage: React.FC = () => {
   });
 
   return (
-    <div className="container mx-auto px-4 mt-8">
+    <div className="flex flex-col min-h-screen w-full pt-2 md:px-4 bg-slate-100">
+      <Header />
+
       {/* Sidebar */}
       <div className="lg:hidden flex justify-end mt-4 mb-2">
         <button
@@ -92,18 +94,21 @@ const HomePage: React.FC = () => {
       <div className="flex flex-wrap md:flex-nowrap">
         {/* Sidebar */}
         <div
-          className={`transform delay-100  border w-full   ${
+          className={`${
             isSidebarOpen ? "block" : "hidden lg:block"
-          } lg:w-auto lg:block lg:flex-shrink-0 lg:mr-8`}
+          } lg:w-56 lg:flex-shrink-0 lg:mr-8`}
         >
-          <Sidebar onSelectOption={handleOptionSelect} />
+          <Sidebar onSelectOption={handleOptionSelect} selectedOption={""} />
         </div>
 
         {/* Main Content */}
         <div className="w-full">
-          <div className="w-full flex mt-3 mb-4 border border-b justify-between rounded p-2">
-            <div className="flex border">
-              <label htmlFor="sort" className="mx-1 p-1">
+          <div className="w-full flex flex-col mt-3 mb-4 md:flex-row md:justify-between md:border md:border-b md:rounded md:p-2">
+            <div className="flex mb-2 md:mb-0 md:justify-center md:items-center md:border md:border-r-0 md:rounded-tl md:rounded-bl md:py-2">
+              <label
+                htmlFor="sort"
+                className="mx-1 py-2 text-black text-center font-semibold"
+              >
                 Sort
               </label>
               <select
@@ -119,13 +124,17 @@ const HomePage: React.FC = () => {
                 </option>
               </select>
             </div>
-            {/* search */}
-            <div className="relative">
+
+            {/* Search */}
+            <div className="relative mb-2 md:mb-0">
               <SearchBar value={searchTerm} onChange={handleSearch} />
             </div>
+
             <button
               onClick={handleOpenModal}
-              className="bg-green-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-green-600 focus:outline-none focus:ring focus:ring-opacity-50"
+              className="bg-green-500 text-white px-4 py-2 rounded-md font-bold
+               flex items-center space-x-2 hover:bg-green-600 focus:outline-none
+                focus:ring focus:ring-opacity-50"
             >
               <PlusIcon className="h-5 w-5" />
               <span>Create New Task</span>
@@ -140,8 +149,8 @@ const HomePage: React.FC = () => {
             />
           )}
 
-          <h2 className="text-xl font-bold mt-8 mb-4">Tasks</h2>
-          <div className="w-full mx-2 p-3 flex flex-wrap md:flex-nowrap gap-3 border">
+          <h2 className="text-xl font-bold p-1 mt-8 text-black">Tasks</h2>
+          <div className="w-full mt-2 md:mx-2 py-2 flex flex-wrap md:flex-nowrap gap-1 md:gap-3">
             {filteredTasks.map((task) => (
               <Task
                 key={task.id}
