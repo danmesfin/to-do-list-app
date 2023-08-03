@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Task Manager App
 
-## Getting Started
+The Task Manager App is a simple web application built with React and Redux that allows users to manage their tasks. It provides an intuitive interface to create, view, update, and delete tasks. The app uses Firebase for authentication.
 
-First, run the development server:
+## Features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+User Authentication: Users can sign up and log in using their email and password or sign in with Google.
+Create Task: Users can create new tasks by providing a title, description, due date, and priority level.
+View Tasks: All tasks are displayed on the dashboard with options to sort and filter them based on completion status.
+Delete Task: Tasks can be deleted from the dashboard by clicking on the delete button.
+Search Task: Users can search for specific tasks using the search bar.
+Sidebar: The app features a sidebar that allows users to filter tasks based on completion status.
+Responsive Design: The app is fully responsive and adapts to different screen sizes for an optimal user experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Technologies Used:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+React: Front-end library for building user interfaces.
+Redux: State management library for managing the app's global state.
+Firebase: Backend-as-a-Service platform for user authentication and data storage.
+Tailwind CSS: Utility-first CSS framework for styling the app with minimal custom CSS.
+Installation:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Clone the repository to your local machine.
 
-## Learn More
+Navigate to the project directory and run npm install to install the required dependencies.
+Set up your Firebase project and configure the Firebase credentials in the firebaseConfig.js file.
+Run npm start to start the development server and open the app in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+Contributing:
+Contributions to the Task Manager App are welcome! If you find any issues or have suggestions for improvements, feel free to create a pull request or open an issue.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+License:
+The Task Manager App is open-source and soon to be released under the MIT License.
