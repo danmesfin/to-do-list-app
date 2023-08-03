@@ -75,12 +75,10 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full pt-2 md:px-4 bg-slate-100">
-      <Header />
-
       {/* Sidebar */}
-      <div className="lg:hidden flex justify-end mt-4 mb-2">
+      <div className="lg:hidden flex justify-end mb-1">
         <button
-          className="p-2 rounded-md bg-gray-200"
+          className="p-2 rounded-md bg-gray-400"
           onClick={handleSidebarToggle}
         >
           {isSidebarOpen ? (
@@ -91,20 +89,22 @@ const HomePage: React.FC = () => {
         </button>
       </div>
 
+      <Header />
+
       <div className="flex flex-wrap md:flex-nowrap">
         {/* Sidebar */}
         <div
           className={`${
             isSidebarOpen ? "block" : "hidden lg:block"
-          } lg:w-56 lg:flex-shrink-0 lg:mr-8`}
+          } w-full lg:w-56 lg:flex-shrink-0 lg:mr-8`}
         >
           <Sidebar onSelectOption={handleOptionSelect} selectedOption={""} />
         </div>
 
         {/* Main Content */}
         <div className="w-full">
-          <div className="w-full flex flex-col mt-3 mb-4 md:flex-row md:justify-between md:border md:border-b md:rounded md:p-2">
-            <div className="flex mb-2 md:mb-0 md:justify-center md:items-center md:border md:border-r-0 md:rounded-tl md:rounded-bl md:py-2">
+          <div className="w-full flex flex-col mt-3 mb-4 md:flex-row md:justify-between md:rounded md:p-2">
+            <div className="flex mb-2 md:mb-0 md:justify-center md:items-center md:rounded-tl md:rounded-bl md:py-2">
               <label
                 htmlFor="sort"
                 className="mx-1 py-2 text-black text-center font-semibold"
@@ -126,13 +126,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Search */}
-            <div className="relative mb-2 md:mb-0">
+            <div className="relative py-2 md:mb-0">
               <SearchBar value={searchTerm} onChange={handleSearch} />
             </div>
 
             <button
               onClick={handleOpenModal}
-              className="bg-green-500 text-white px-4 py-2 rounded-md font-bold
+              className="bg-green-500 text-white px-4 rounded-md font-bold md:h-10
                flex items-center space-x-2 hover:bg-green-600 focus:outline-none
                 focus:ring focus:ring-opacity-50"
             >

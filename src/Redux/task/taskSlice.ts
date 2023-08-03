@@ -61,9 +61,11 @@ const tasksSlice = createSlice({
         Object.assign(existingTask, action.payload);
       }
     },
+    
     deleteTask: (state, action: PayloadAction<number>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+
     sortTasks: (state, action: PayloadAction<'byDate' | 'byPriority'>) => {
       state.sortingCriteria = action.payload;
       if (action.payload === 'byDate') {
@@ -72,16 +74,7 @@ const tasksSlice = createSlice({
         state.tasks.sort((a, b) => a.priority.localeCompare(b.priority));
       }
     },
-    searchTasks: (state, action: PayloadAction<string>) => {
-      const searchTerm = action.payload.toLowerCase();
-      state.tasks.forEach(task => {
-        if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
-          task.show = true;
-        } else {
-          task.show = false;
-        }
-      });
-    },
+   
   },
 });
 
