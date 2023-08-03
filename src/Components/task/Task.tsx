@@ -47,11 +47,7 @@ const Task: React.FC<TaskProps> = ({
 
   return (
     <div className="bg-white shadow rounded-lg p-2 md:p-4 mb-4 w-full md:w-72">
-      <h3 className="text-lg font-bold mb-2 text-black">
-        {title}
-        {" : "}
-        {id}
-      </h3>
+      <h3 className="text-lg font-bold mb-2 text-gray-700">{title}</h3>
       <p className="text-gray-600 text-sm mb-2">{description}</p>
       <p className="text-gray-600 text-sm mb-2">Due Date: {dueDate}</p>
       <p
@@ -63,12 +59,11 @@ const Task: React.FC<TaskProps> = ({
       </p>
       {/* Display tags */}
       {tags.length > 0 && (
-        <div className="mb-2">
-          Tags:{" "}
+        <div className="mb-2 flex items-start justify-start flex-wrap">
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="inline-block bg-gray-200 px-2 py-1 text-sm font-medium text-gray-800 rounded-full mr-1"
+              className="inline-block bg-gray-200 px-2 py-1 text-xs font-medium text-gray-600 rounded-full mr-1"
             >
               {tag}
             </span>
@@ -82,14 +77,14 @@ const Task: React.FC<TaskProps> = ({
             onClick={() => setShowDeleteConfirmation(true)}
             className="bg-red-500 text-white px-2 py-1 rounded-md ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
           >
-            <TrashIcon className="h-5 w-5" /> {/* Use the TrashIcon */}
+            <TrashIcon className="h-4 w-4" /> {/* Use the TrashIcon */}
           </button>
         </div>
       ) : (
-        <>
+        <div className="flex align-middle">
           <button
             onClick={handleMarkAsComplete}
-            className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-opacity-50"
+            className="bg-blue-500 text-white text-sm px-2 py-1 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-opacity-50"
           >
             Mark as Complete
           </button>
@@ -97,9 +92,9 @@ const Task: React.FC<TaskProps> = ({
             onClick={() => setShowDeleteConfirmation(true)}
             className="bg-red-500 text-white px-2 py-1 rounded-md ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
           >
-            <TrashIcon className="h-5 w-5" /> {/* Use the TrashIcon */}
+            <TrashIcon className="h-4 w-4" /> {/* Use the TrashIcon */}
           </button>
-        </>
+        </div>
       )}
 
       {/* Show delete confirmation dialog */}

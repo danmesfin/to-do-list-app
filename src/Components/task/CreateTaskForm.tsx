@@ -67,7 +67,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-3">
       <div className="bg-white rounded-lg p-4">
-        <h2 className="text-xl font-bold mb-4 text-black">Create Task</h2>
+        <h2 className="text-xl font-bold mb-4 text-gray-700">Create Task</h2>
         <form onSubmit={handleSubmit} className="max-w-sm mb-4 w-72">
           <div className="mb-4">
             <label
@@ -83,7 +83,8 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               required
               value={formData.title}
               onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+              className="mt-1 block w-full border border-gray-300 rounded-md
+               shadow-sm focus:ring focus:ring-opacity-50 text-gray-700"
             />
           </div>
           <div className="mb-4">
@@ -99,7 +100,8 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               required
               value={formData.description}
               onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+              className="mt-1 block w-full border border-gray-300
+               rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-gray-700"
             />
           </div>
           <div className="mb-4">
@@ -116,7 +118,8 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               required
               value={formData.dueDate}
               onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+              className="mt-1 block w-full border border-gray-300
+               rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-gray-700"
             />
           </div>
           <div className="mb-4">
@@ -132,7 +135,8 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               required
               value={formData.priority}
               onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+              className="mt-1 block w-full border border-gray-300 
+              rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-gray-700"
             >
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -152,13 +156,16 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
               name="tags"
               value={formData.tags.join(", ")} // Convert the tags array to comma-separated string
               onChange={handleTagChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 text-black"
+              className="mt-1 block w-full border border-gray-300
+               rounded-md shadow-sm focus:ring focus:ring-opacity-50text-gray-700"
             />
           </div>
           <div className="mb-4 flex justify-end">
             <button
               type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-green-600 focus:outline-none focus:ring focus:ring-opacity-50"
+              className="bg-green-500 text-white px-4 py-2 
+              rounded-md flex items-center space-x-2 hover:bg-green-600 
+              focus:outline-none focus:ring focus:ring-opacity-50"
             >
               <CheckIcon className="h-5 w-5" />
               <span>Create Task</span>
@@ -166,7 +173,9 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onCloseModal }) => {
             <button
               type="button"
               onClick={onCloseModal}
-              className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 ml-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-opacity-50"
+              className="bg-red-500 text-white px-4 py-2 
+              rounded-md flex items-center space-x-2 ml-2 hover:bg-red-600 
+              focus:outline-none focus:ring focus:ring-opacity-50"
             >
               <XCircleIcon className="h-5 w-5" />
               <span>Cancel</span>
