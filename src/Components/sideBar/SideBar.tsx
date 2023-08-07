@@ -17,9 +17,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <div
       className="w-full bg-gradient-to-b from-gray-200 via-blue-300
-     rounded-md shadow-md to-blue-700 h-full md:w-48 p-4 mt-3 md:h-full"
+     rounded-md shadow-md to-blue-700 h-full md:w-48 p-4 md:mt-3 md:fixed z-10"
     >
-      <ul>
+      <ul className="flex flex-col md:mt-8 ">
         <li
           className={`cursor-pointer p-2 hover:bg-gray-300 flex items-center text-black ${
             selectedOption === "all" ? "bg-blue-300" : ""
@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <span className="mr-2">
             <ClockIcon className="h-5 w-5" />
           </span>
-          Completed Tasks
+          Completed
         </li>
         <li
           className={`cursor-pointer p-2 hover:bg-gray-300 flex items-center text-black ${

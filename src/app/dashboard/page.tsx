@@ -74,9 +74,9 @@ const HomePage: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col min-h-screen w-full pt-2 md:px-4 bg-slate-100">
+    <div className="flex flex-col min-h-screen w-full pb-8 pt-2 md:px-4 bg-slate-100">
       {/* Sidebar */}
-      <div className="lg:hidden flex justify-end mb-1">
+      <div className="lg:hidden flex justify-end mb-1 ml-4 left-4">
         <button
           className="p-2 rounded-md bg-gray-400"
           onClick={handleSidebarToggle}
@@ -88,21 +88,19 @@ const HomePage: React.FC = () => {
           )}
         </button>
       </div>
-
       <Header />
-
       <div className="flex flex-wrap md:flex-nowrap">
         {/* Sidebar */}
         <div
           className={`${
             isSidebarOpen ? "block" : "hidden lg:block"
-          } w-full lg:w-56 lg:flex-shrink-0 lg:mr-8`}
+          } w-full lg:w-56 lg:flex-shrink-0 mt-5 lg:mr-8`}
         >
           <Sidebar onSelectOption={handleOptionSelect} selectedOption={""} />
         </div>
 
         {/* Main Content */}
-        <div className="w-full">
+        <div className="w-full mt-8">
           <div className="w-full flex flex-col mt-3 mb-4 md:flex-row md:justify-between md:rounded md:p-2">
             <div className="flex mb-2 md:mb-0 md:justify-center md:items-center md:rounded-tl md:rounded-bl md:py-2">
               <label
@@ -126,18 +124,18 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Search */}
-            <div className="relative py-2 md:mb-0">
+            <div className="relative py-2 md:mb-0 z-0">
               <SearchBar value={searchTerm} onChange={handleSearch} />
             </div>
 
             <button
               onClick={handleOpenModal}
-              className="bg-green-500 text-white px-4 rounded-md font-bold md:h-10
+              className=" w-40 h-8 bg-green-500 text-white px-4 rounded-md font-bold md:h-10
                flex items-center space-x-2 hover:bg-green-600 focus:outline-none
                 focus:ring focus:ring-opacity-50"
             >
               <PlusIcon className="h-5 w-5" />
-              <span>Create New Task</span>
+              <span>New Task</span>
             </button>
           </div>
 
@@ -150,7 +148,7 @@ const HomePage: React.FC = () => {
           )}
 
           <h2 className="text-xl font-bold p-1 mt-8 text-black">Tasks</h2>
-          <div className="w-full mt-2 md:mx-2 py-2 flex flex-wrap md:flex-nowrap gap-1 md:gap-3">
+          <div className="w-full mt-2 md:mx-2 py-2 flex flex-wrap gap-1 md:gap-3 px-4">
             {filteredTasks.map((task) => (
               <Task
                 key={task.id}

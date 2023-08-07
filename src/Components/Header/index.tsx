@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { logoutUser } from "../../Redux/user/userSlice";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { signOut, getAuth } from "firebase/auth";
+
 const Header: React.FC = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const currentUser = useSelector((state: any) => state.user.currentUser);
@@ -24,8 +25,8 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className="flex justify-between items-center
-     bg-blue-500 text-white px-4 py-2"
+      className="flex justify-between items-center bg-blue-500
+     text-white px-4 py-2 md:fixed md:top-0 w-full z-50"
     >
       <h1 className="text-xl font-bold">Dashboard</h1>
       <div className="relative">
