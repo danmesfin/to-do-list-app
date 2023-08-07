@@ -36,7 +36,6 @@ const initialState: TasksState = {
       completed: true,
       tags: ['speed', 'remote'],
     },
-    // Add more tasks here
  
   ],   
 

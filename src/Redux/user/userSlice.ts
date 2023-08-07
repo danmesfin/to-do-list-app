@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  currentUser: any; // Replace 'any' with your user data type if available
+  currentUser: any; 
 }
 
 const initialState: UserState = {
@@ -19,7 +19,7 @@ const userSlice = createSlice({
     logoutUser: (state) => {
       state.currentUser = null;
     },
-    // Add other user-related actions here, if needed
+   
   },
 });
 

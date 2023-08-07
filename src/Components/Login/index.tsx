@@ -45,7 +45,7 @@ const Login: React.FC = () => {
           <input
             type="email"
             placeholder="Email"
-            className="pl-10 mb-2 px-3 py-2 rounded-full border border-gray-300"
+            className="pl-10 mb-2 px-3 py-2 rounded-full border border-gray-300 text-gray-800"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -55,7 +55,7 @@ const Login: React.FC = () => {
           <input
             type="password"
             placeholder="Password"
-            className="pl-10 mb-2 px-3 py-2 rounded-full border border-gray-300"
+            className="pl-10 mb-2 px-3 py-2 rounded-full border border-gray-300 text-gray-800"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
