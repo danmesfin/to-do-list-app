@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
 import LoginPage from "./login/page";
+import Loading from "@/Components/Loading/Spinner";
 
 const LandingPage: React.FC = () => {
   const router = useRouter();
@@ -19,8 +20,7 @@ const LandingPage: React.FC = () => {
   }, [user, loading, router]);
 
   if (loading) {
-    // Show a loading spinner or a message if you want
-    return null;
+    return <Loading />;
   }
 
   // Show the login page if the user is not authenticated

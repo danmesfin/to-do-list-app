@@ -1,9 +1,10 @@
+"use client";
 import { useState, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../Redux/user/userSlice";
-import { signInWithEmailAndPassword, Auth } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
-import { UserIcon, LockClosedIcon } from "@heroicons/react/24/solid"; // Import the required HeroIcons
+import { UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import Loading from "../Loading/Spinner";
 
 const Login: React.FC = () => {
@@ -11,10 +12,12 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (e: FormEvent) => {
-    setIsLoading(true);
     e.preventDefault();
+    setIsLoading(true);
+    setError(null); // Clear any previous errors
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -25,6 +28,7 @@ const Login: React.FC = () => {
       dispatch(setCurrentUser(user));
     } catch (error: any) {
       console.error("Error logging in:", error.message);
+      setError("Invalid email or password. Please try again.");
     }
     setIsLoading(false);
   };
@@ -62,9 +66,13 @@ const Login: React.FC = () => {
         >
           {isLoading ? <Loading /> : "Sign In"}
         </button>
-        <p className="mt-2 text-blue-500 hover:underline cursor-pointer">
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+        <a
+          href="/reset-password"
+          className="mt-2 text-blue-500 hover:underline cursor-pointer"
+        >
           Forgot Password
-        </p>
+        </a>
       </form>
     </div>
   );
